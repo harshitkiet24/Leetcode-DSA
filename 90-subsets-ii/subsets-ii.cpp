@@ -2,9 +2,6 @@ class Solution {
 public:
     void func(vector<int>&arr,vector<int>&ds,int idx,vector<vector<int>> &subset){
         subset.push_back(ds);
-        if(idx == arr.size()){
-            return;
-        }
         for(int i = idx;i < arr.size();i++){
             if(i > idx && arr[i] == arr[i-1]){
                 continue;
