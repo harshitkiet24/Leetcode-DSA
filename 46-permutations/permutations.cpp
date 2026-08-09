@@ -1,28 +1,21 @@
 class Solution {
 public:
-    void func( vector<int> &ds,vector<vector<int>> &ans,vector<int> &nums,int freq[]){
-        if(ds.size()==nums.size()){
+    void func( vector<int> &ds,vector<vector<int>> &ans,int idx){
+        if(idx==ds.size()){
             ans.push_back(ds);
             return;
         }
-        for(int i=0;i<nums.size();i++){
-            if(freq[i]==0){
-                ds.push_back(nums[i]);
-                freq[i] = 1;
-                func(ds,ans,nums,freq);
-                freq[i] = 0;
-                ds.pop_back();
-            }
+        for(int i=idx;i<ds.size();i++){
+           swap(ds[idx],ds[i]);
+           func(ds,ans,idx+1);
+           swap(ds[idx],ds[i]);
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<int> ds;
+        vector<int> ds = nums;
         vector<vector<int>> ans;
-        int freq[nums.size()];
-        for(int i=0;i<nums.size();i++){
-            freq[i] = 0;
-        }
-        func(ds,ans,nums,freq);
+        int idx = 0;
+        func(ds,ans,idx);
         return ans;
     }
 };
