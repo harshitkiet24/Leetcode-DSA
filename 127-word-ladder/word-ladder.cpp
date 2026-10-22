@@ -7,6 +7,9 @@ public:
             return 0;
         queue<pair<string, int>> q;
         q.push({beginWord, 1});
+        if(st.count(beginWord)){
+            st.erase(beginWord);
+        }
         while (!q.empty()) {
             string sr = q.front().first;
             int level = q.front().second;
