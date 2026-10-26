@@ -18,22 +18,25 @@ public:
         for (int i = 0; i < n; i++) {
             if (indegree[i] == 0) {
                 q.push(i);
-                ans.push_back(i);
             }
         }
-
+        vector<bool> safe(n, false);
         while (!q.empty()) {
             int node = q.front();
             q.pop();
+            safe[node] = true;
             for (auto it : revgraph[node]) {
                 indegree[it]--;
                 if (indegree[it] == 0) {
                     q.push(it);
-                    ans.push_back(it);
                 }
             }
         }
-        sort(ans.begin(), ans.end());
+        for(int i = 0;i<n;i++){
+            if(safe[i] == true){
+                ans.push_back(i);
+            }
+        }
         return ans;
     }
 };
