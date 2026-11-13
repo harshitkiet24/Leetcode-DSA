@@ -27,7 +27,7 @@ public:
             int dest = it.first;
             int distance = it.second;
 
-            if (dis + distance < dist[dest]) {
+            if (dis + distance < dist[dest] && stop <= k) {
                 dist[dest] = dis + distance;
                 q.push({stop + 1, {dest, dis + distance}});
             }
@@ -41,5 +41,4 @@ public:
 
     return dist[dst];
 }
-}
-;
+};
